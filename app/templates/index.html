@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>:: CBF ::</title>
+	</head>
+	<body>
+		<h1>hello pussey</h1>
+		
+		<form action="/search" method="POST">
+			<ul>
+				{% for book in books %}
+				  <li><input type="radio" name="book_id" value="{{book.id}}"/> {{ book.name }}</li>
+				{% endfor %}
+			</ul>
+
+			<button type="submit">Search</button>
+		</form>
+	</body>
+</html>

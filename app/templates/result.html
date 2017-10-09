@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>:: CBF ::</title>
+	</head>
+	<body>
+		<h3>Requested Book</h3>
+		<p>{{ request_book.name }}</p>
+		<br>
+		<h1>Result: {{ books.count() }}</h1>
+		<ul>
+			{% for book in books %}
+			  <li>{{ book.name }}</li>
+			{% endfor %}
+		</ul>
+		<br>
+		{% if books.count() %}
+			<p>Si te gusto el vidio chaval dale like y suscribete!</p>
+			<form action="/feedback" method="POST">		
+				<input type="hidden" name="feedback_type" value="positive" />
+				<input type="hidden" name="request_book" value="{{ request_book.id }}" />
+				{% for bid in book_ids %}
+					<input type="hidden" name="result_book_ids[]" value="{{ bid | int }}" />
+				{% endfor %}
+				<button type="submit">Like</button>
+			</form>
+			<form action="/feedback" method="POST">
+				<input type="hidden" name="feedback_type" value="negative" />
+				<input type="hidden" name="request_book" value="{{ request_book.id }}" />
+				{% for bid in book_ids %}
+					<input type="hidden" name="result_book_ids[]" value="{{ bid | int }}" />
+				{% endfor %}
+				<button type="submit">O no >:/</button>
+			</form>
+		{% endif %}
+		<a href="/">Ir a buscar un libro</a>
+	</body>
+</html>
