@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="theme-color" content="#2196F3">
+    <title>Recomendalibros</title>
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+    <link href="{{url_for('static',filename='css/materialize.css')}}" type="text/css" rel="stylesheet" >
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     <script src="{{url_for('static',filename='js/materialize.js')}}"></script>
+     <script src="{{url_for('static',filename='js/jquery.hideseek.min.js')}}"></script>
+        <style>
+        .floater {
+        position: fixed;
+        top:30%px;
+        left:65%;
+        -webkit-transition: all 2s ease-in-out;
+        transition: all 2s ease-in-out;
+        z-index: 1;
+        }
+        </style>
+
+</head>
+<body>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">Recomendalibros</a>
+
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h1 class="header center orange-text">Empieza Aquí!</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">Escribe parte del nombre o autor que te haya gustado antes</h5>
+      </div>
+      <form>
+  <nav style="background-color:#ffffff">
+    <div class="nav-wrapper">
+      <form>
+        <div class="input-field">
+          <input id="search-hidden-mode" type="search" placeholder="Escribe aquí" required style="font-size: 30px;font-weight: 300;width: 100%;height: 65px;" data-list=".hidden_mode_list" data-nodata="No results found" autocomplete="off" >
+          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+          <i class="material-icons">close</i>
+        </div>
+      </form>
+    </div>
+  </nav>
+      </form>
+      <br><br>
+
+    </div>
+  </div>
+<!--Hero-->
+<div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+        <form action="/search" method="POST">
+            <button type="submit" class="waves-effect waves-light btn-large floater" style="background-color: #ff9800 !important"><i class="material-icons right">send</i>Pedir Recomendaciones!</button>
+            <ul class="hidden_mode_list">
+                {% for book in books %}
+                  <li ><input type="radio" name="book_id" id="{{book.id}}" value="{{book.id}}" /> 
+                    <label for="{{book.id}}">{{ book.name }} {{ book.field2 }} {{ book.field3 }}</label></li>
+                {% endfor %}
+            </ul>
+
+            
+        </form>
+    </div>
+</div>
+
+    <!--  Scripts-->
+    <script>
+        $('#search-hidden-mode').hideseek({
+            nodata: 'No lo tenemos joven :('
+        });
+           
+
+    </script>
+    </body>
+</html>
