@@ -1,29 +1,50 @@
 <!DOCTYPE html>
-	<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<title>:: CBF ::</title>
-	</head>
-	<body>
-		<h3>Requested Book</h3>
-		<p>{{ request_book.name }}</p>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="theme-color" content="#2196F3">
+    <title>Recomendalibros</title>
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+    <link href="{{url_for('static',filename='css/materialize.css')}}" type="text/css" rel="stylesheet" >
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     <script src="{{url_for('static',filename='js/materialize.js')}}"></script>
+</head>
+<body>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">Recomendalibros</a>
+
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+		<h3 style="color:rgb(222, 196, 60);">Libro evaluado:</h3>
+		<h4>{{ request_book.name }} {{ request_book.field2 }} {{ request_book.field3 }} {{ request_book.field4 }}</h4>
 		<br>
-		<h1>Result: {{ books.count() }}</h1>
+		<h3 style="color:rgb(222, 196, 60);">Resultados: </h3>
 		<ul>
 			{% for book in books %}
-			  <li>{{ book.name }}</li>
+			  <h4>{{ book.name }} {{ book.field2 }} {{ book.field3 }} {{ book.field4 }}</h4>
+			  	<li><h5> Similitud: {{book.value}} </h5>
 			{% endfor %}
 		</ul>
 		<br>
-		{% if books.count() %}
-			<p>Si te gusto el vidio chaval dale like y suscribete!</p>
+		{% if books|length > 1 %}
+		<div class="row">
+		<div style="width:60%;">
+			<h5>Por favor, danos tu opinión para poder mejorar.</h5>
 			<form action="/feedback" method="POST">		
 				<input type="hidden" name="feedback_type" value="positive" />
 				<input type="hidden" name="request_book" value="{{ request_book.id }}" />
 				{% for bid in book_ids %}
 					<input type="hidden" name="result_book_ids[]" value="{{ bid | int }}" />
 				{% endfor %}
-				<button type="submit">Like</button>
+				<button type="submit" style="float:left;background-color: #ff9800 !important" class="waves-effect waves-light btn-large"><i class="material-icons right">thumb_up</i>Me gustó la recomendación</button>
 			</form>
 			<form action="/feedback" method="POST">
 				<input type="hidden" name="feedback_type" value="negative" />
@@ -31,9 +52,21 @@
 				{% for bid in book_ids %}
 					<input type="hidden" name="result_book_ids[]" value="{{ bid | int }}" />
 				{% endfor %}
-				<button type="submit">O no >:/</button>
+				<button style="float:right;background-color: #c30808" type="submit" class="waves-effect waves-light btn-large"><i class="material-icons right">thumb_down</i>No me gustó la recomendación</button>
 			</form>
 		{% endif %}
-		<a href="/">Ir a buscar un libro</a>
-	</body>
+			</div>
+		</div>
+		<h5><a href="/">Volver</a></h5>
+      <br><br>
+
+    </div>
+  </div>
+<!--Hero-->
+
+    <!--  Scripts-->
+    
+    </body>
 </html>
+
+

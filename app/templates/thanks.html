@@ -1,11 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<title>:: CBF ::</title>
-	</head>
-	<body>
-		<p>Gracias por tu feedback</p>
-		<a href="/">Ir a buscar un libro</a>
-	</body>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="theme-color" content="#2196F3">
+    <title>Recomendalibros</title>
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+    <link href="{{url_for('static',filename='css/materialize.css')}}" type="text/css" rel="stylesheet" >
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     <script src="{{url_for('static',filename='js/materialize.js')}}"></script>
+</head>
+<body>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">Recomendalibros</a>
+
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h1 class="header center orange-text">Gracias por tu Feedback!</h1>
+      <div class="row center">
+        <h5 class="header col s12 light"><a href="/">Empieza de nuevo</a></h5>
+      </div>
+  </div>
+    <!--  Scripts-->
+    
+    </body>
 </html>
